@@ -1,21 +1,28 @@
+# GitHub User Activity CLI
+# Fetches and displays recent public events for a given GitHub user
+
 import json
 import sys
 import requests
 
 
 def main():
+
+    if len(sys.argv <= 1):
+        return
+
     username = sys.argv[1]
 
-    if not username:
-        return
-
     response = requests.get(f"https://api.github.com/users/{username}/events")
-    if not response:
+    if response.status_code != 200:
         return
+    
     events = json.loads(response.content.decode("utf-8"))
 
     for event in events:
         repo_name = event["repo"]["name"]
+
+        # Handle different types of GitHub events
         match event["type"]:
             case "PushEvent":
                 commits = len(event["payload"]["commits"])
