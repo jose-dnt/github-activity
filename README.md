@@ -2,6 +2,7 @@
 
 A simple Python-based command-line tool to fetch and display recent public events for any GitHub user.  
 This project demonstrates using the GitHub Events API.
+This project is an implementation of the Task Tracker project from [roadmap.sh](https://roadmap.sh/projects/github-user-activity).
 
 ---
 
